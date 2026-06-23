@@ -1,461 +1,603 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>InterviewSolutions — Frontend Interview Prep</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/2.47.0/iconfont/tabler-icons.min.css">
-<link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kapil Gupta — Senior Frontend Developer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg: #000000;
+            --bg-secondary: #080808;
+            --card: #0A0A0A;
+            --border: rgba(255, 255, 255, 0.08);
+            --border-hover: rgba(255, 255, 255, 0.15);
+            --text: #E4E4E7;
+            --text-muted: #71717A;
+            --accent: #3B82F6; /* Vercel Blue */
+            --accent-glow: rgba(59, 130, 246, 0.15);
+        }
+
+        * {
+            scrollbar-width: thin;
+            scrollbar-color: #333 var(--bg);
+        }
+
+        *::-webkit-scrollbar { width: 6px; }
+        *::-webkit-scrollbar-track { background: var(--bg); }
+        *::-webkit-scrollbar-thumb { background-color: #222; border-radius: 3px; }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+
+        /* Grid Background */
+        .grid-bg {
+            background-image: 
+                linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        /* Cursor Spotlight (Global) */
+        .spotlight {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(255, 255, 255, 0.02), transparent 40%);
+            transition: background 0.1s;
+        }
+
+        /* ==========================================
+           HERO AURORA ANIMATION
+           ========================================== */
+        .hero-aurora-container {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            overflow: hidden;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .aurora-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.4;
+            animation: drift 15s infinite alternate cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .aurora-1 { width: 500px; height: 500px; background: #3B82F6; top: -10%; left: 20%; }
+        .aurora-2 { width: 400px; height: 400px; background: #8B5CF6; top: 10%; right: 10%; animation-delay: -4s; opacity: 0.3; }
+        .aurora-3 { width: 300px; height: 300px; background: #06B6D4; bottom: -5%; left: 40%; animation-delay: -8s; opacity: 0.2; }
+
+        @keyframes drift {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(40px, 60px) scale(1.1); }
+            100% { transform: translate(-30px, 20px) scale(0.95); }
+        }
+
+        /* Hero Entrance Animation */
+        .hero-content > * {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: slideUp 0.8s forwards cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .hero-content > *:nth-child(1) { animation-delay: 0.1s; }
+        .hero-content > *:nth-child(2) { animation-delay: 0.2s; }
+        .hero-content > *:nth-child(3) { animation-delay: 0.3s; }
+        .hero-content > *:nth-child(4) { animation-delay: 0.4s; }
+        .hero-content > *:nth-child(5) { animation-delay: 0.5s; }
+
+        @keyframes slideUp { to { opacity: 1; transform: translateY(0); } }
+
+        /* ==========================================
+           PREMIUM CARDS & HOVER EFFECTS
+           ========================================== */
+        .card {
+            position: relative;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            transition: border-color 0.3s ease, transform 0.3s ease;
+            /* The magic mouse-tracking radial gradient */
+            background-image: radial-gradient(320px circle at var(--mouse-x) var(--mouse-y), rgba(59, 130, 246, 0.06), transparent 100%);
+        }
+
+        .card:hover {
+            border-color: rgba(59, 130, 246, 0.4); /* Vercel Blue border glow */
+            transform: translateY(-4px);
+        }
+
+        /* Subtle top highlight on hover */
+        .card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: 16px;
+            padding: 1px;
+            background: linear-gradient(180deg, rgba(255,255,255,0.1), rgba(255,255,255,0));
+            -webkit-mask: linear-gradient(#FFF 0 0) content-box, linear-gradient(#FFF 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        /* Text Gradient */
+        .text-gradient {
+            background: linear-gradient(180deg, #FFF 0%, #888 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* ==========================================
+           BUTTONS & MICRO-INTERACTIONS
+           ========================================== */
+        .btn-primary {
+            background: #FFF;
+            color: #000;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-primary:hover { background: #DDD; transform: scale(1.02); }
+        .btn-primary i { transition: transform 0.2s ease; }
+        .btn-primary:hover i { transform: translateX(4px); } /* Arrow slides right */
+
+        .btn-secondary {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border);
+            color: #FFF;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: 14px;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-secondary:hover { background: rgba(255,255,255,0.1); border-color: var(--border-hover); }
+
+        /* Scroll Reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .reveal.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Skill Tags */
+        .skill-tag {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid var(--border);
+            color: #CCC;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            transition: all 0.2s;
+        }
+        .skill-tag:hover {
+            background: var(--accent-glow);
+            border-color: var(--accent);
+            color: #FFF;
+            transform: translateY(-2px);
+        }
+
+        /* Nav Links Underline Effect */
+        .nav-link {
+            position: relative;
+            transition: color 0.2s ease;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: #FFF;
+            transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .nav-link:hover { color: #FFF; }
+        .nav-link:hover::after { width: 100%; }
+
+        /* Nav Blur */
+        .nav-blur {
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+    </style>
 </head>
-<body>
+<body class="grid-bg">
 
-  <div class="bg-grid"></div>
-  <div class="bg-glow bg-glow-1"></div>
-  <div class="bg-glow bg-glow-2"></div>
+    <!-- Cursor Spotlight -->
+    <div class="spotlight"></div>
 
-  <!-- Navbar -->
-  <header class="navbar">
-    <div class="navbar-inner">
-      <a href="#" class="logo">
-        <span class="logo-bracket">&lt;/&gt;</span>
-        <span class="logo-text">Interview<span class="accent">Solutions</span></span>
-      </a>
-
-      <nav class="nav-links">
-        <a href="#" class="nav-link active">Home</a>
-        <a href="#" class="nav-link">UI</a>
-        <a href="#" class="nav-link">Coding</a>
-        <a href="#" class="nav-link">Theory</a>
-        <a href="#" class="nav-link">Paths</a>
-        <a href="#" class="nav-link">Quiz</a>
-        <a href="#" class="nav-link">Bookmarks</a>
-      </nav>
-
-      <div class="navbar-actions">
-        <button class="icon-btn" aria-label="Search">
-          <i class="ti ti-search"></i>
-        </button>
-        <button class="icon-btn" aria-label="Toggle theme">
-          <i class="ti ti-sun"></i>
-        </button>
-        <button class="icon-btn nav-menu-btn" aria-label="Menu">
-          <i class="ti ti-menu-2"></i>
-        </button>
-      </div>
-    </div>
-  </header>
-
-  <main>
-
-    <!-- Bento Hero -->
-    <section class="hero">
-
-      <div class="hero-main fade-up">
-        <div class="hero-badge">
-          <span class="status-dot"></span>
-          <span class="mono">master_frontend_interviews()</span>
-        </div>
-
-        <h1 class="hero-title">
-          Frontend <span class="gradient-text">Interview Solutions</span>, all in one place.
-        </h1>
-
-        <p class="hero-subtitle">
-          A curated collection of interactive coding challenges, UI components, and
-          theory questions — built with Next.js and React. Practice real interview
-          problems with live, working solutions.
-        </p>
-      </div>
-
-      <!-- CTA card -->
-      <a href="#coding" class="bento-cell cell-cta fade-up delay-1">
-        <div>
-          <div class="cell-cta-label">Get started</div>
-          <div class="cell-cta-title">50 coding challenges, from easy to FAANG&#8209;level.</div>
-        </div>
-        <span class="btn btn-primary">
-          <i class="ti ti-player-play"></i>
-          Start practicing
-        </span>
-      </a>
-
-      <!-- Stats card -->
-      <div class="bento-cell cell-stats fade-up delay-2">
-        <div class="stat-block">
-          <span class="stat-value c1" data-target="50">0</span>
-          <span class="stat-label">coding problems</span>
-        </div>
-        <div class="stat-block">
-          <span class="stat-value c2" data-target="14">0</span>
-          <span class="stat-label">UI solutions</span>
-        </div>
-        <div class="stat-block">
-          <span class="stat-value c3" data-target="22">0</span>
-          <span class="stat-label">theory questions</span>
-        </div>
-        <div class="stat-block">
-          <span class="stat-value c4" data-target="7">0</span>
-          <span class="stat-label">learning paths</span>
-        </div>
-      </div>
-
-      <!-- Code window card -->
-      <div class="bento-cell cell-code fade-up delay-3">
-        <div class="code-window-header">
-          <div class="window-dots">
-            <span class="dot dot-red"></span>
-            <span class="dot dot-yellow"></span>
-            <span class="dot dot-green"></span>
-          </div>
-          <span class="code-window-title mono">check-palindrome.js</span>
-        </div>
-        <pre><code><span class="c-comment">// Two pointers approach</span>
-<span class="c-keyword">function</span> <span class="c-func">isPalindrome</span>(s) {
-  <span class="c-keyword">let</span> l = <span class="c-number">0</span>, r = s.length - <span class="c-number">1</span>;
-  <span class="c-keyword">while</span> (l &lt; r) {
-    <span class="c-keyword">if</span> (s[l] !== s[r])
-      <span class="c-keyword">return</span> <span class="c-bool">false</span>;
-    l++; r--;
-  }
-  <span class="c-keyword">return</span> <span class="c-bool">true</span>;
-}</code></pre>
-        <div class="code-window-footer">
-          <span class="badge badge-pattern"><i class="ti ti-puzzle"></i> Two Pointers</span>
-          <span class="badge badge-data"><i class="ti ti-database"></i> String</span>
-        </div>
-      </div>
-
-      <!-- New: Learning Paths card -->
-      <a href="#paths" class="bento-cell cell-badge fade-up delay-4">
-        <div class="path-icon">
-          <i class="ti ti-route"></i>
-        </div>
-        <div>
-          <div class="cell-badge-title">New: Learning Paths</div>
-          <div class="cell-badge-desc">Curated sequences — from React Basics to Interview Prep, beginner to advanced.</div>
-        </div>
-        <span class="cell-badge-arrow"><i class="ti ti-arrow-right"></i></span>
-      </a>
-
-    </section>
-
-    <!-- Primary cards -->
-    <section class="section" id="coding">
-      <div class="section-inner">
-
-        <div class="section-heading fade-up">
-          <span class="eyebrow mono">// explore()</span>
-          <h2 class="section-title">Everything you need to prepare</h2>
-          <p class="section-desc">Six focused areas covering UI implementation, algorithms, theory, and structured learning.</p>
-        </div>
-
-        <div class="cards-grid">
-
-          <a href="#" class="card fade-up">
-            <div class="card-header">
-              <div class="card-icon icon-purple">
-                <i class="ti ti-palette"></i>
-              </div>
-              <span class="card-count">14 solutions</span>
-            </div>
-            <h3 class="card-title">UI Solutions</h3>
-            <p class="card-desc">
-              14 interactive React components — Counter, Todo, Tic Tac Toe,
-              Modal, and more.
-            </p>
-            <div class="card-footer">
-              <span class="difficulty-tag">Easy → Hard</span>
-              <i class="ti ti-arrow-right card-arrow"></i>
-            </div>
-          </a>
-
-          <a href="#" class="card fade-up">
-            <div class="card-header">
-              <div class="card-icon icon-green">
-                <i class="ti ti-code"></i>
-              </div>
-              <span class="card-count">50 problems</span>
-            </div>
-            <h3 class="card-title">Coding Problems</h3>
-            <p class="card-desc">
-              50 algorithmic challenges from basic logic to FAANG-level
-              interview questions.
-            </p>
-            <div class="card-footer">
-              <span class="difficulty-tag">Easy → Hard</span>
-              <i class="ti ti-arrow-right card-arrow"></i>
-            </div>
-          </a>
-
-          <a href="#" class="card fade-up">
-            <div class="card-header">
-              <div class="card-icon icon-amber">
-                <i class="ti ti-notebook"></i>
-              </div>
-              <span class="card-count">22 questions</span>
-            </div>
-            <h3 class="card-title">Theory Questions</h3>
-            <p class="card-desc">
-              JavaScript, React, CSS, TypeScript, and System Design concepts
-              explained.
-            </p>
-            <div class="card-footer">
-              <span class="new-tag">New</span>
-              <i class="ti ti-arrow-right card-arrow"></i>
-            </div>
-          </a>
-
-          <a href="#paths" class="card fade-up">
-            <div class="card-header">
-              <div class="card-icon icon-pink">
-                <i class="ti ti-route"></i>
-              </div>
-              <span class="card-count">7 paths</span>
-            </div>
-            <h3 class="card-title">Learning Paths</h3>
-            <p class="card-desc">
-              Curated sequences — React Basics, JS Fundamentals, Interview
-              Prep, and more.
-            </p>
-            <div class="card-footer">
-              <span class="difficulty-tag">Beginner → Advanced</span>
-              <i class="ti ti-arrow-right card-arrow"></i>
-            </div>
-          </a>
-
-          <a href="#" class="card fade-up">
-            <div class="card-header">
-              <div class="card-icon icon-blue">
-                <i class="ti ti-brain"></i>
-              </div>
-              <span class="card-count">6 questions</span>
-            </div>
-            <h3 class="card-title">Quiz</h3>
-            <p class="card-desc">
-              Test your knowledge with multiple-choice questions on React and
-              JavaScript.
-            </p>
-            <div class="card-footer">
-              <span class="difficulty-tag">All levels</span>
-              <i class="ti ti-arrow-right card-arrow"></i>
-            </div>
-          </a>
-
-          <a href="#" class="card fade-up">
-            <div class="card-header">
-              <div class="card-icon icon-coral">
-                <i class="ti ti-bookmark"></i>
-              </div>
-              <span class="card-count">saved items</span>
-            </div>
-            <h3 class="card-title">Bookmarks</h3>
-            <p class="card-desc">
-              Your saved solutions and problems for quick access and review.
-            </p>
-            <div class="card-footer">
-              <span class="difficulty-tag">Personal</span>
-              <i class="ti ti-arrow-right card-arrow"></i>
-            </div>
-          </a>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- Snippet showcase -->
-    <section class="section">
-      <div class="section-inner">
-        <div class="showcase">
-
-          <div class="showcase-text fade-up">
-            <span class="eyebrow mono">// live_solutions.js</span>
-            <h2 class="showcase-title">Every problem ships with a working solution</h2>
-            <p class="showcase-desc">
-              No locked answers. Each challenge includes the approach,
-              pattern, complexity analysis, and a fully runnable code
-              sample — so you understand the "why," not just the "how."
-            </p>
-            <ul class="showcase-list">
-              <li><i class="ti ti-check"></i> Step-by-step approach walkthroughs</li>
-              <li><i class="ti ti-check"></i> Time and space complexity for every solution</li>
-              <li><i class="ti ti-check"></i> Pattern + data structure tags for quick filtering</li>
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 nav-blur border-b border-[var(--border)]">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center max-w-5xl">
+            <a href="#home" class="font-bold text-lg tracking-tight text-white">Kapil Gupta</a>
+            <ul class="hidden md:flex space-x-8 text-sm text-[var(--text-muted)]">
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#experience" class="nav-link">Experience</a></li>
             </ul>
-            <a href="#" class="link-arrow">
-              Explore all solutions <i class="ti ti-arrow-right"></i>
+            <a href="kapil_gupta_cv.pdf" download class="btn-primary text-xs py-2 px-4">
+                <i class="fas fa-download text-xs"></i> CV
             </a>
-          </div>
-
-          <div class="code-window code-window-large fade-up delay-1">
-            <div class="code-window-header">
-              <div class="window-dots">
-                <span class="dot dot-red"></span>
-                <span class="dot dot-yellow"></span>
-                <span class="dot dot-green"></span>
-              </div>
-              <span class="code-window-title mono">check-palindrome.js</span>
-            </div>
-            <div class="code-window-body">
-<pre><code><span class="c-comment">// Two pointers: compare characters from both ends</span>
-<span class="c-keyword">function</span> <span class="c-func">isPalindrome</span>(s) {
-  <span class="c-keyword">let</span> left = <span class="c-number">0</span>, right = s.length - <span class="c-number">1</span>;
-  <span class="c-keyword">while</span> (left &lt; right) {
-    <span class="c-comment">// If any pair mismatches, it's not a palindrome</span>
-    <span class="c-keyword">if</span> (s[left] !== s[right]) <span class="c-keyword">return</span> <span class="c-bool">false</span>;
-    left++;
-    right--;
-  }
-  <span class="c-comment">// All pairs matched — it's a palindrome</span>
-  <span class="c-keyword">return</span> <span class="c-bool">true</span>;
-}</code></pre>
-            </div>
-            <div class="code-window-footer">
-              <span class="badge badge-pattern"><i class="ti ti-puzzle"></i> Two Pointers</span>
-              <span class="badge badge-data"><i class="ti ti-database"></i> String</span>
-              <span class="complexity">
-                <span class="mono">O(n)</span> time
-                <span class="dot-sep">·</span>
-                <span class="mono">O(1)</span> space
-              </span>
-            </div>
-          </div>
-
         </div>
-      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="home" class="min-h-screen flex items-center justify-center relative px-6 pt-24 pb-12">
+        
+        <!-- Aurora Background Elements -->
+        <div class="hero-aurora-container">
+            <div class="aurora-blob aurora-1"></div>
+            <div class="aurora-blob aurora-2"></div>
+            <div class="aurora-blob aurora-3"></div>
+        </div>
+
+        <div class="hero-content text-center max-w-4xl relative z-10">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 mb-6 bg-[var(--card)] border border-[var(--border)] rounded-full text-xs text-[var(--text-muted)] font-mono">
+                <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                Available for new opportunities
+            </div>
+            
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-extrabold mb-6 tracking-tighter text-gradient leading-none">
+                Senior Frontend<br>Web3 & Web2 Developer
+            </h1>
+            
+            <p class="text-lg md:text-xl text-[var(--text-muted)] max-w-2xl mx-auto mb-10 leading-relaxed">
+                I'm Kapil Gupta, a React.js/Next.js engineer with 4+ years of experience crafting high-performance, pixel-perfect decentralized applications and dynamic web interfaces.
+            </p>
+            
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="#projects" class="btn-primary">
+                    View My Work <i class="fas fa-arrow-right text-xs"></i>
+                </a>
+                <a href="kapil_gupta_cv.pdf" download class="btn-secondary">
+                    <i class="fas fa-file-arrow-down"></i> Download Resume
+                </a>
+            </div>
+
+            <div class="flex justify-center space-x-8 mt-12 text-[var(--text-muted)] text-xl">
+                <a href="https://www.linkedin.com/in/kapil-gupta-5527aa174/" target="_blank" class="hover:text-white transition-colors"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/kapil-gupta-378" target="_blank" class="hover:text-white transition-colors"><i class="fab fa-github"></i></a>
+                <a href="https://x.com/kapil_js" target="_blank" class="hover:text-white transition-colors"><i class="fab fa-x-twitter"></i></a>
+            </div>
+        </div>
+    </header>
+
+    <!-- About / Logos -->
+    <section id="about" class="py-24 px-6 relative z-10">
+        <div class="container mx-auto max-w-5xl">
+            <div class="reveal text-center mb-16">
+                <p class="font-mono text-sm text-[var(--accent)] mb-2">// ARCHITECTURE</p>
+                <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-white">Building the future of the web</h2>
+            </div>
+            <div class="reveal card p-8 md:p-12">
+                <p class="text-lg text-[var(--text-muted)] leading-relaxed text-center">
+                    Proficient in leveraging the React.js and Next.js ecosystem to build dynamic and interactive interfaces. Skilled in translating design mockups and wireframes into high-quality code, ensuring pixel-perfect implementation across Web2 and Web3 ecosystems.
+                </p>
+            </div>
+        </div>
     </section>
 
-    <!-- Learning paths preview -->
-    <section class="section" id="paths">
-      <div class="section-inner">
+    <!-- Skills Section -->
+    <section id="skills" class="py-24 px-6 relative z-10">
+        <div class="container mx-auto max-w-5xl">
+            <div class="reveal mb-12">
+                <p class="font-mono text-sm text-[var(--accent)] mb-2">// TECH_STACK</p>
+                <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-white">Capabilities & Tools</h2>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="reveal card p-8">
+                    <div class="flex items-center gap-3 mb-6">
+                        <i class="fas fa-code text-[var(--accent)] text-xl"></i>
+                        <h3 class="text-xl font-semibold text-white">Frontend Architecture</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-tag">React.js</span>
+                        <span class="skill-tag">Next.js (SSR/SSG)</span>
+                        <span class="skill-tag">TypeScript</span>
+                        <span class="skill-tag">JavaScript (ES6+)</span>
+                        <span class="skill-tag">HTML5</span>
+                        <span class="skill-tag">DOM</span>
+                    </div>
+                </div>
 
-        <div class="section-heading fade-up">
-          <span class="eyebrow mono">// learning_paths()</span>
-          <h2 class="section-title">Structured paths from beginner to advanced</h2>
-          <p class="section-desc">Follow a curated sequence instead of jumping between random problems.</p>
+                <div class="reveal card p-8">
+                    <div class="flex items-center gap-3 mb-6">
+                        <i class="fas fa-cube text-[var(--accent)] text-xl"></i>
+                        <h3 class="text-xl font-semibold text-white">Web3 / Blockchain</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-tag">Wagmi</span>
+                        <span class="skill-tag">Viem.js</span>
+                        <span class="skill-tag">Ether.js</span>
+                        <span class="skill-tag">Web3.js</span>
+                        <span class="skill-tag">Reown AppKit</span>
+                        <span class="skill-tag">WalletConnect</span>
+                        <span class="skill-tag">LayerZero</span>
+                    </div>
+                </div>
+
+                <div class="reveal card p-8">
+                    <div class="flex items-center gap-3 mb-6">
+                        <i class="fas fa-database text-[var(--accent)] text-xl"></i>
+                        <h3 class="text-xl font-semibold text-white">State & Data</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-tag">Redux Toolkit (RTK)</span>
+                        <span class="skill-tag">Context API</span>
+                        <span class="skill-tag">TanStack Query</span>
+                        <span class="skill-tag">RESTful APIs</span>
+                    </div>
+                </div>
+
+                <div class="reveal card p-8">
+                    <div class="flex items-center gap-3 mb-6">
+                        <i class="fas fa-paint-brush text-[var(--accent)] text-xl"></i>
+                        <h3 class="text-xl font-semibold text-white">UI & Styling</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-tag">Tailwind CSS</span>
+                        <span class="skill-tag">Radix UI</span>
+                        <span class="skill-tag">Framer Motion</span>
+                        <span class="skill-tag">Material UI</span>
+                        <span class="skill-tag">SCSS</span>
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <div class="paths-grid">
-
-          <a href="#" class="path-card fade-up">
-            <div class="path-card-header">
-              <div class="path-card-icon icon-purple">
-                <i class="ti ti-cube"></i>
-              </div>
-              <span class="level-tag level-beginner">Beginner</span>
-            </div>
-            <h3 class="path-card-title">React Basics</h3>
-            <p class="path-card-desc">Master React fundamentals: state, props, events, and hooks through hands-on components.</p>
-            <div class="path-card-tags">
-              <span class="tag">Counter</span>
-              <span class="tag">Star Rating</span>
-              <span class="tag">Accordion</span>
-              <span class="tag-more">+2</span>
-            </div>
-            <div class="path-card-footer">
-              <span class="mono">5 problems</span>
-              <i class="ti ti-arrow-right card-arrow"></i>
-            </div>
-          </a>
-
-          <a href="#" class="path-card fade-up">
-            <div class="path-card-header">
-              <div class="path-card-icon icon-amber">
-                <i class="ti ti-cube"></i>
-              </div>
-              <span class="level-tag level-beginner">Beginner</span>
-            </div>
-            <h3 class="path-card-title">JavaScript Fundamentals</h3>
-            <p class="path-card-desc">Strengthen your core JavaScript skills with these logic-building problems.</p>
-            <div class="path-card-tags">
-              <span class="tag">Reverse String</span>
-              <span class="tag">Palindrome</span>
-              <span class="tag-more">+3</span>
-            </div>
-            <div class="path-card-footer">
-              <span class="mono">5 problems</span>
-              <i class="ti ti-arrow-right card-arrow"></i>
-            </div>
-          </a>
-
-          <a href="#" class="path-card fade-up">
-            <div class="path-card-header">
-              <div class="path-card-icon icon-green">
-                <i class="ti ti-cube"></i>
-              </div>
-              <span class="level-tag level-intermediate">Intermediate</span>
-            </div>
-            <h3 class="path-card-title">Array Mastery</h3>
-            <p class="path-card-desc">Build proficiency with array operations, transformations, and algorithms.</p>
-            <div class="path-card-tags">
-              <span class="tag">Sorting</span>
-              <span class="tag">Searching</span>
-              <span class="tag-more">+6</span>
-            </div>
-            <div class="path-card-footer">
-              <span class="mono">8 problems</span>
-              <i class="ti ti-arrow-right card-arrow"></i>
-            </div>
-          </a>
-
-          <a href="#" class="path-card fade-up">
-            <div class="path-card-header">
-              <div class="path-card-icon icon-pink">
-                <i class="ti ti-cube"></i>
-              </div>
-              <span class="level-tag level-intermediate">Intermediate</span>
-            </div>
-            <h3 class="path-card-title">String Algorithms</h3>
-            <p class="path-card-desc">Tackle common string manipulation problems asked in frontend interviews.</p>
-            <div class="path-card-tags">
-              <span class="tag">Anagrams</span>
-              <span class="tag">Substrings</span>
-              <span class="tag-more">+4</span>
-            </div>
-            <div class="path-card-footer">
-              <span class="mono">6 problems</span>
-              <i class="ti ti-arrow-right card-arrow"></i>
-            </div>
-          </a>
-
-        </div>
-
-        <div class="paths-cta fade-up">
-          <a href="#" class="btn btn-secondary">
-            View all 7 learning paths
-            <i class="ti ti-arrow-right"></i>
-          </a>
-        </div>
-
-      </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-      <div class="footer-inner">
-        <div class="footer-left">
-          <div class="logo">
-            <span class="logo-bracket">&lt;/&gt;</span>
-            <span class="logo-text">Interview<span class="accent">Solutions</span></span>
-          </div>
-          <p class="footer-tagline">Built with Next.js &amp; Tailwind CSS</p>
+    <!-- Projects Section (Bento Grid) -->
+    <section id="projects" class="py-24 px-6 relative z-10">
+        <div class="container mx-auto max-w-5xl">
+            <div class="reveal mb-12">
+                <p class="font-mono text-sm text-[var(--accent)] mb-2">// EXECUTED_MISSIONS</p>
+                <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-white">Featured Projects</h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Project 1 -->
+                <div class="reveal card p-8 flex flex-col">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-xl font-semibold text-white">Autonomint DApp</h3>
+                        <span class="font-mono text-xs text-[var(--accent)] border border-[var(--accent)] px-2 py-1 rounded">Web3</span>
+                    </div>
+                    <p class="text-[var(--text-muted)] text-sm mb-6 flex-grow">Multi-chain DeFi borrowing, lending, and options platform on Ethereum, Optimism, Mode, Base Sepolia, and Hyperliquid.</p>
+                    <ul class="text-[var(--text-muted)] text-sm space-y-2 mb-6 list-disc list-inside opacity-80">
+                        <li>Built LayerZero cross-chain bridging across 5+ networks.</li>
+                        <li>Implemented borrowing forms with Yup validation & LTV.</li>
+                        <li>Developed stock-covered call options module.</li>
+                        <li>Integrated smart contracts via Wagmi + TanStack Query.</li>
+                    </ul>
+                    <div class="flex flex-wrap gap-2 mt-auto">
+                        <span class="text-xs text-zinc-500 font-mono">Next.js</span>
+                        <span class="text-xs text-zinc-500 font-mono">Wagmi</span>
+                        <span class="text-xs text-zinc-500 font-mono">LayerZero</span>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="reveal card p-8 flex flex-col">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-xl font-semibold text-white">Trading App</h3>
+                        <span class="font-mono text-xs text-[var(--accent)] border border-[var(--accent)] px-2 py-1 rounded">Web3</span>
+                    </div>
+                    <p class="text-[var(--text-muted)] text-sm mb-6 flex-grow">Comprehensive trading application on the Sei blockchain with bonding and staking.</p>
+                    <ul class="text-[var(--text-muted)] text-sm space-y-2 mb-6 list-disc list-inside opacity-80">
+                        <li>Integrated TradingView charts and order book.</li>
+                        <li>Implemented order placing API with validation.</li>
+                        <li>Facilitated secure Web3 payments for actions.</li>
+                        <li>Designed scalable TypeScript interfaces.</li>
+                    </ul>
+                    <div class="flex flex-wrap gap-2 mt-auto">
+                        <span class="text-xs text-zinc-500 font-mono">React.js</span>
+                        <span class="text-xs text-zinc-500 font-mono">Sei Blockchain</span>
+                        <span class="text-xs text-zinc-500 font-mono">TradingView</span>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="reveal card p-8 flex flex-col">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-xl font-semibold text-white">Astroon NFT (ICO)</h3>
+                        <span class="font-mono text-xs text-[var(--accent)] border border-[var(--accent)] px-2 py-1 rounded">Web3</span>
+                    </div>
+                    <p class="text-[var(--text-muted)] text-sm mb-6 flex-grow">ICO Website on Ethereum blockchain featuring ERC-20 token sales and ERC-721 NFT sales.</p>
+                    <ul class="text-[var(--text-muted)] text-sm space-y-2 mb-6 list-disc list-inside opacity-80">
+                        <li>Built ERC-20 token sale using Merkle tree-based ILO.</li>
+                        <li>Implemented token vesting and cliffing mechanisms.</li>
+                        <li>Enabled ERC-721 sales via ERC-20 deductions.</li>
+                        <li>Built reward claim feature based on schedules.</li>
+                    </ul>
+                    <div class="flex flex-wrap gap-2 mt-auto">
+                        <span class="text-xs text-zinc-500 font-mono">Ethereum</span>
+                        <span class="text-xs text-zinc-500 font-mono">Merkle Tree</span>
+                        <span class="text-xs text-zinc-500 font-mono">Ethers.js</span>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="reveal card p-8 flex flex-col">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-xl font-semibold text-white">Clubrare & Noddi</h3>
+                        <span class="font-mono text-xs text-[var(--accent)] border border-[var(--accent)] px-2 py-1 rounded">Web2/3</span>
+                    </div>
+                    <p class="text-[var(--text-muted)] text-sm mb-6 flex-grow">NFT Marketplace (Ethereum) & On-demand Car Maintenance Platform (Europe).</p>
+                    <ul class="text-[var(--text-muted)] text-sm space-y-2 mb-6 list-disc list-inside opacity-80">
+                        <li>Engineered dynamic Landing Page for Clubrare.</li>
+                        <li>Integrated REST APIs for fetching NFT data.</li>
+                        <li>Transformed Figma designs into pixel-perfect UI.</li>
+                        <li>Orchestrated seamless UI and API integration.</li>
+                    </ul>
+                    <div class="flex flex-wrap gap-2 mt-auto">
+                        <span class="text-xs text-zinc-500 font-mono">React.js</span>
+                        <span class="text-xs text-zinc-500 font-mono">Tailwind CSS</span>
+                        <span class="text-xs text-zinc-500 font-mono">SCSS</span>
+                    </div>
+                </div>
+            </div>
         </div>
-        <nav class="footer-links">
-          <a href="#">Home</a>
-          <a href="#">Coding</a>
-          <a href="#">UI</a>
-          <a href="#">Theory</a>
-          <a href="#paths">Paths</a>
-        </nav>
-        <div class="footer-right">
-          <span>© 2026 InterviewSolutions. All rights reserved.</span>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-24 px-6 relative z-10">
+        <div class="container mx-auto max-w-5xl">
+            <div class="reveal mb-12">
+                <p class="font-mono text-sm text-[var(--accent)] mb-2">// CAREER_PATH</p>
+                <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-white">Experience</h2>
+            </div>
+
+            <div class="space-y-8">
+                <div class="reveal card p-8 flex flex-col md:flex-row gap-6">
+                    <div class="md:w-1/4">
+                        <p class="text-sm text-[var(--text-muted)] font-mono">Jan 2025 - Jun 2026</p>
+                    </div>
+                    <div class="md:w-3/4">
+                        <h3 class="text-xl font-semibold text-white mb-1">Senior React.js / Next.js Developer Web3</h3>
+                        <p class="text-[var(--accent)] mb-3 text-sm font-medium">Autonomint</p>
+                        <p class="text-[var(--text-muted)] text-sm leading-relaxed">Led frontend architecture for a multi-chain DeFi platform, integrating complex smart contracts, cross-chain bridges, and dynamic dashboards.</p>
+                    </div>
+                </div>
+
+                <div class="reveal card p-8 flex flex-col md:flex-row gap-6">
+                    <div class="md:w-1/4">
+                        <p class="text-sm text-[var(--text-muted)] font-mono">May 2024 - Sep 2024</p>
+                    </div>
+                    <div class="md:w-3/4">
+                        <h3 class="text-xl font-semibold text-white mb-1">Senior React.js / Next.js Developer Web3</h3>
+                        <p class="text-[var(--accent)] mb-3 text-sm font-medium">Filament Finance, Singapore</p>
+                        <p class="text-[var(--text-muted)] text-sm leading-relaxed">Developed a comprehensive trading application on the Sei blockchain with TradingView charts, order book functionality, and staking mechanisms.</p>
+                    </div>
+                </div>
+
+                <div class="reveal card p-8 flex flex-col md:flex-row gap-6">
+                    <div class="md:w-1/4">
+                        <p class="text-sm text-[var(--text-muted)] font-mono">Nov 2021 - Mar 2024</p>
+                    </div>
+                    <div class="md:w-3/4">
+                        <h3 class="text-xl font-semibold text-white mb-1">React.js / Next.js Developer Web2/Web3</h3>
+                        <p class="text-[var(--accent)] mb-3 text-sm font-medium">Webllisto Technology, Indore</p>
+                        <p class="text-[var(--text-muted)] text-sm leading-relaxed">Contributed to multiple projects including Astroon NFT (ICO), Clubrare (NFT Marketplace), Traddible, and Noddi.</p>
+                    </div>
+                </div>
+
+                <div class="reveal card p-8 flex flex-col md:flex-row gap-6">
+                    <div class="md:w-1/4">
+                        <p class="text-sm text-[var(--text-muted)] font-mono">July 2016 - 2021</p>
+                    </div>
+                    <div class="md:w-3/4">
+                        <h3 class="text-xl font-semibold text-white mb-1">B.Tech</h3>
+                        <p class="text-[var(--accent)] mb-3 text-sm font-medium">Rajiv Gandhi University, Bhopal India</p>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
+    </section>
+
+    <!-- Contact Footer -->
+    <footer id="contact" class="py-24 px-6 relative border-t border-[var(--border)] mt-12 z-10">
+        <div class="container mx-auto max-w-5xl text-center">
+            <div class="reveal mb-12">
+                <p class="font-mono text-sm text-[var(--accent)] mb-2">// LET'S_CONNECT</p>
+                <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-white mb-6">Let's build something great.</h2>
+                <p class="text-[var(--text-muted)] mb-8 max-w-xl mx-auto">Ready to deploy new protocols and interfaces. Send a transmission.</p>
+                
+                <div class="flex flex-col items-center gap-6">
+                    <a href="mailto:kapil0506gupta@gmail.com" class="text-lg md:text-2xl text-white hover:text-[var(--accent)] transition-colors border-b border-[var(--border)] pb-1">
+                        kapil0506gupta@gmail.com
+                    </a>
+                    <p class="text-[var(--text-muted)] text-sm">Indore M.P. India • 8305259636</p>
+                    
+                    <div class="flex space-x-6 mt-4 text-2xl text-[var(--text-muted)]">
+                        <a href="https://www.linkedin.com/in/kapil-gupta-5527aa174/" target="_blank" class="hover:text-white transition-colors"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://github.com/kapil-gupta-378" target="_blank" class="hover:text-white transition-colors"><i class="fab fa-github"></i></a>
+                        <a href="https://x.com/kapil_js" target="_blank" class="hover:text-white transition-colors"><i class="fab fa-x-twitter"></i></a>
+                    </div>
+                    
+                    <a href="kapil_gupta_cv.pdf" download class="btn-primary mt-4">
+                        <i class="fas fa-file-arrow-down"></i> Download Resume
+                    </a>
+                </div>
+            </div>
+            
+            <div class="border-t border-[var(--border)] pt-8 text-[var(--text-muted)] text-xs font-mono">
+                <p>© 2024 KAPIL GUPTA. BUILT WITH REACT & TAILWIND PRINCIPLES.</p>
+            </div>
+        </div>
     </footer>
 
-  </main>
+    <script>
+        // Global Cursor Spotlight Tracker
+        const spotlight = document.querySelector('.spotlight');
+        document.addEventListener('mousemove', (e) => {
+            requestAnimationFrame(() => {
+                spotlight.style.setProperty('--mouse-x', e.clientX + 'px');
+                spotlight.style.setProperty('--mouse-y', e.clientY + 'px');
+            });
+        });
 
-  <script src="script.js"></script>
+        // Per-Card Mouse Tracking for Radial Glow
+        const cards = document.querySelectorAll('.card');
+        cards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                requestAnimationFrame(() => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    card.style.setProperty('--mouse-x', `${x}px`);
+                    card.style.setProperty('--mouse-y', `${y}px`);
+                });
+            });
+        });
+
+        // Scroll Reveal Animation (Intersection Observer)
+        const reveals = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target); // Stop observing once visible
+                }
+            });
+        }, { threshold: 0.1 });
+
+        reveals.forEach(reveal => {
+            observer.observe(reveal);
+        });
+    </script>
 </body>
 </html>
