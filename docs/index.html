@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>InterviewSolutions — Frontend Interview Prep</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/2.47.0/iconfont/tabler-icons.min.css">
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="bg-grid"></div>
+  <div class="bg-glow bg-glow-1"></div>
+  <div class="bg-glow bg-glow-2"></div>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="navbar-inner">
+      <a href="#" class="logo">
+        <span class="logo-bracket">&lt;/&gt;</span>
+        <span class="logo-text">Interview<span class="accent">Solutions</span></span>
+      </a>
+
+      <nav class="nav-links">
+        <a href="#" class="nav-link active">Home</a>
+        <a href="#" class="nav-link">UI</a>
+        <a href="#" class="nav-link">Coding</a>
+        <a href="#" class="nav-link">Theory</a>
+        <a href="#" class="nav-link">Paths</a>
+        <a href="#" class="nav-link">Quiz</a>
+        <a href="#" class="nav-link">Bookmarks</a>
+      </nav>
+
+      <div class="navbar-actions">
+        <button class="icon-btn" aria-label="Search">
+          <i class="ti ti-search"></i>
+        </button>
+        <button class="icon-btn" aria-label="Toggle theme">
+          <i class="ti ti-sun"></i>
+        </button>
+        <button class="icon-btn nav-menu-btn" aria-label="Menu">
+          <i class="ti ti-menu-2"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- Bento Hero -->
+    <section class="hero">
+
+      <div class="hero-main fade-up">
+        <div class="hero-badge">
+          <span class="status-dot"></span>
+          <span class="mono">master_frontend_interviews()</span>
+        </div>
+
+        <h1 class="hero-title">
+          Frontend <span class="gradient-text">Interview Solutions</span>, all in one place.
+        </h1>
+
+        <p class="hero-subtitle">
+          A curated collection of interactive coding challenges, UI components, and
+          theory questions — built with Next.js and React. Practice real interview
+          problems with live, working solutions.
+        </p>
+      </div>
+
+      <!-- CTA card -->
+      <a href="#coding" class="bento-cell cell-cta fade-up delay-1">
+        <div>
+          <div class="cell-cta-label">Get started</div>
+          <div class="cell-cta-title">50 coding challenges, from easy to FAANG&#8209;level.</div>
+        </div>
+        <span class="btn btn-primary">
+          <i class="ti ti-player-play"></i>
+          Start practicing
+        </span>
+      </a>
+
+      <!-- Stats card -->
+      <div class="bento-cell cell-stats fade-up delay-2">
+        <div class="stat-block">
+          <span class="stat-value c1" data-target="50">0</span>
+          <span class="stat-label">coding problems</span>
+        </div>
+        <div class="stat-block">
+          <span class="stat-value c2" data-target="14">0</span>
+          <span class="stat-label">UI solutions</span>
+        </div>
+        <div class="stat-block">
+          <span class="stat-value c3" data-target="22">0</span>
+          <span class="stat-label">theory questions</span>
+        </div>
+        <div class="stat-block">
+          <span class="stat-value c4" data-target="7">0</span>
+          <span class="stat-label">learning paths</span>
+        </div>
+      </div>
+
+      <!-- Code window card -->
+      <div class="bento-cell cell-code fade-up delay-3">
+        <div class="code-window-header">
+          <div class="window-dots">
+            <span class="dot dot-red"></span>
+            <span class="dot dot-yellow"></span>
+            <span class="dot dot-green"></span>
+          </div>
+          <span class="code-window-title mono">check-palindrome.js</span>
+        </div>
+        <pre><code><span class="c-comment">// Two pointers approach</span>
+<span class="c-keyword">function</span> <span class="c-func">isPalindrome</span>(s) {
+  <span class="c-keyword">let</span> l = <span class="c-number">0</span>, r = s.length - <span class="c-number">1</span>;
+  <span class="c-keyword">while</span> (l &lt; r) {
+    <span class="c-keyword">if</span> (s[l] !== s[r])
+      <span class="c-keyword">return</span> <span class="c-bool">false</span>;
+    l++; r--;
+  }
+  <span class="c-keyword">return</span> <span class="c-bool">true</span>;
+}</code></pre>
+        <div class="code-window-footer">
+          <span class="badge badge-pattern"><i class="ti ti-puzzle"></i> Two Pointers</span>
+          <span class="badge badge-data"><i class="ti ti-database"></i> String</span>
+        </div>
+      </div>
+
+      <!-- New: Learning Paths card -->
+      <a href="#paths" class="bento-cell cell-badge fade-up delay-4">
+        <div class="path-icon">
+          <i class="ti ti-route"></i>
+        </div>
+        <div>
+          <div class="cell-badge-title">New: Learning Paths</div>
+          <div class="cell-badge-desc">Curated sequences — from React Basics to Interview Prep, beginner to advanced.</div>
+        </div>
+        <span class="cell-badge-arrow"><i class="ti ti-arrow-right"></i></span>
+      </a>
+
+    </section>
+
+    <!-- Primary cards -->
+    <section class="section" id="coding">
+      <div class="section-inner">
+
+        <div class="section-heading fade-up">
+          <span class="eyebrow mono">// explore()</span>
+          <h2 class="section-title">Everything you need to prepare</h2>
+          <p class="section-desc">Six focused areas covering UI implementation, algorithms, theory, and structured learning.</p>
+        </div>
+
+        <div class="cards-grid">
+
+          <a href="#" class="card fade-up">
+            <div class="card-header">
+              <div class="card-icon icon-purple">
+                <i class="ti ti-palette"></i>
+              </div>
+              <span class="card-count">14 solutions</span>
+            </div>
+            <h3 class="card-title">UI Solutions</h3>
+            <p class="card-desc">
+              14 interactive React components — Counter, Todo, Tic Tac Toe,
+              Modal, and more.
+            </p>
+            <div class="card-footer">
+              <span class="difficulty-tag">Easy → Hard</span>
+              <i class="ti ti-arrow-right card-arrow"></i>
+            </div>
+          </a>
+
+          <a href="#" class="card fade-up">
+            <div class="card-header">
+              <div class="card-icon icon-green">
+                <i class="ti ti-code"></i>
+              </div>
+              <span class="card-count">50 problems</span>
+            </div>
+            <h3 class="card-title">Coding Problems</h3>
+            <p class="card-desc">
+              50 algorithmic challenges from basic logic to FAANG-level
+              interview questions.
+            </p>
+            <div class="card-footer">
+              <span class="difficulty-tag">Easy → Hard</span>
+              <i class="ti ti-arrow-right card-arrow"></i>
+            </div>
+          </a>
+
+          <a href="#" class="card fade-up">
+            <div class="card-header">
+              <div class="card-icon icon-amber">
+                <i class="ti ti-notebook"></i>
+              </div>
+              <span class="card-count">22 questions</span>
+            </div>
+            <h3 class="card-title">Theory Questions</h3>
+            <p class="card-desc">
+              JavaScript, React, CSS, TypeScript, and System Design concepts
+              explained.
+            </p>
+            <div class="card-footer">
+              <span class="new-tag">New</span>
+              <i class="ti ti-arrow-right card-arrow"></i>
+            </div>
+          </a>
+
+          <a href="#paths" class="card fade-up">
+            <div class="card-header">
+              <div class="card-icon icon-pink">
+                <i class="ti ti-route"></i>
+              </div>
+              <span class="card-count">7 paths</span>
+            </div>
+            <h3 class="card-title">Learning Paths</h3>
+            <p class="card-desc">
+              Curated sequences — React Basics, JS Fundamentals, Interview
+              Prep, and more.
+            </p>
+            <div class="card-footer">
+              <span class="difficulty-tag">Beginner → Advanced</span>
+              <i class="ti ti-arrow-right card-arrow"></i>
+            </div>
+          </a>
+
+          <a href="#" class="card fade-up">
+            <div class="card-header">
+              <div class="card-icon icon-blue">
+                <i class="ti ti-brain"></i>
+              </div>
+              <span class="card-count">6 questions</span>
+            </div>
+            <h3 class="card-title">Quiz</h3>
+            <p class="card-desc">
+              Test your knowledge with multiple-choice questions on React and
+              JavaScript.
+            </p>
+            <div class="card-footer">
+              <span class="difficulty-tag">All levels</span>
+              <i class="ti ti-arrow-right card-arrow"></i>
+            </div>
+          </a>
+
+          <a href="#" class="card fade-up">
+            <div class="card-header">
+              <div class="card-icon icon-coral">
+                <i class="ti ti-bookmark"></i>
+              </div>
+              <span class="card-count">saved items</span>
+            </div>
+            <h3 class="card-title">Bookmarks</h3>
+            <p class="card-desc">
+              Your saved solutions and problems for quick access and review.
+            </p>
+            <div class="card-footer">
+              <span class="difficulty-tag">Personal</span>
+              <i class="ti ti-arrow-right card-arrow"></i>
+            </div>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Snippet showcase -->
+    <section class="section">
+      <div class="section-inner">
+        <div class="showcase">
+
+          <div class="showcase-text fade-up">
+            <span class="eyebrow mono">// live_solutions.js</span>
+            <h2 class="showcase-title">Every problem ships with a working solution</h2>
+            <p class="showcase-desc">
+              No locked answers. Each challenge includes the approach,
+              pattern, complexity analysis, and a fully runnable code
+              sample — so you understand the "why," not just the "how."
+            </p>
+            <ul class="showcase-list">
+              <li><i class="ti ti-check"></i> Step-by-step approach walkthroughs</li>
+              <li><i class="ti ti-check"></i> Time and space complexity for every solution</li>
+              <li><i class="ti ti-check"></i> Pattern + data structure tags for quick filtering</li>
+            </ul>
+            <a href="#" class="link-arrow">
+              Explore all solutions <i class="ti ti-arrow-right"></i>
+            </a>
+          </div>
+
+          <div class="code-window code-window-large fade-up delay-1">
+            <div class="code-window-header">
+              <div class="window-dots">
+                <span class="dot dot-red"></span>
+                <span class="dot dot-yellow"></span>
+                <span class="dot dot-green"></span>
+              </div>
+              <span class="code-window-title mono">check-palindrome.js</span>
+            </div>
+            <div class="code-window-body">
+<pre><code><span class="c-comment">// Two pointers: compare characters from both ends</span>
+<span class="c-keyword">function</span> <span class="c-func">isPalindrome</span>(s) {
+  <span class="c-keyword">let</span> left = <span class="c-number">0</span>, right = s.length - <span class="c-number">1</span>;
+  <span class="c-keyword">while</span> (left &lt; right) {
+    <span class="c-comment">// If any pair mismatches, it's not a palindrome</span>
+    <span class="c-keyword">if</span> (s[left] !== s[right]) <span class="c-keyword">return</span> <span class="c-bool">false</span>;
+    left++;
+    right--;
+  }
+  <span class="c-comment">// All pairs matched — it's a palindrome</span>
+  <span class="c-keyword">return</span> <span class="c-bool">true</span>;
+}</code></pre>
+            </div>
+            <div class="code-window-footer">
+              <span class="badge badge-pattern"><i class="ti ti-puzzle"></i> Two Pointers</span>
+              <span class="badge badge-data"><i class="ti ti-database"></i> String</span>
+              <span class="complexity">
+                <span class="mono">O(n)</span> time
+                <span class="dot-sep">·</span>
+                <span class="mono">O(1)</span> space
+              </span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Learning paths preview -->
+    <section class="section" id="paths">
+      <div class="section-inner">
+
+        <div class="section-heading fade-up">
+          <span class="eyebrow mono">// learning_paths()</span>
+          <h2 class="section-title">Structured paths from beginner to advanced</h2>
+          <p class="section-desc">Follow a curated sequence instead of jumping between random problems.</p>
+        </div>
+
+        <div class="paths-grid">
+
+          <a href="#" class="path-card fade-up">
+            <div class="path-card-header">
+              <div class="path-card-icon icon-purple">
+                <i class="ti ti-cube"></i>
+              </div>
+              <span class="level-tag level-beginner">Beginner</span>
+            </div>
+            <h3 class="path-card-title">React Basics</h3>
+            <p class="path-card-desc">Master React fundamentals: state, props, events, and hooks through hands-on components.</p>
+            <div class="path-card-tags">
+              <span class="tag">Counter</span>
+              <span class="tag">Star Rating</span>
+              <span class="tag">Accordion</span>
+              <span class="tag-more">+2</span>
+            </div>
+            <div class="path-card-footer">
+              <span class="mono">5 problems</span>
+              <i class="ti ti-arrow-right card-arrow"></i>
+            </div>
+          </a>
+
+          <a href="#" class="path-card fade-up">
+            <div class="path-card-header">
+              <div class="path-card-icon icon-amber">
+                <i class="ti ti-cube"></i>
+              </div>
+              <span class="level-tag level-beginner">Beginner</span>
+            </div>
+            <h3 class="path-card-title">JavaScript Fundamentals</h3>
+            <p class="path-card-desc">Strengthen your core JavaScript skills with these logic-building problems.</p>
+            <div class="path-card-tags">
+              <span class="tag">Reverse String</span>
+              <span class="tag">Palindrome</span>
+              <span class="tag-more">+3</span>
+            </div>
+            <div class="path-card-footer">
+              <span class="mono">5 problems</span>
+              <i class="ti ti-arrow-right card-arrow"></i>
+            </div>
+          </a>
+
+          <a href="#" class="path-card fade-up">
+            <div class="path-card-header">
+              <div class="path-card-icon icon-green">
+                <i class="ti ti-cube"></i>
+              </div>
+              <span class="level-tag level-intermediate">Intermediate</span>
+            </div>
+            <h3 class="path-card-title">Array Mastery</h3>
+            <p class="path-card-desc">Build proficiency with array operations, transformations, and algorithms.</p>
+            <div class="path-card-tags">
+              <span class="tag">Sorting</span>
+              <span class="tag">Searching</span>
+              <span class="tag-more">+6</span>
+            </div>
+            <div class="path-card-footer">
+              <span class="mono">8 problems</span>
+              <i class="ti ti-arrow-right card-arrow"></i>
+            </div>
+          </a>
+
+          <a href="#" class="path-card fade-up">
+            <div class="path-card-header">
+              <div class="path-card-icon icon-pink">
+                <i class="ti ti-cube"></i>
+              </div>
+              <span class="level-tag level-intermediate">Intermediate</span>
+            </div>
+            <h3 class="path-card-title">String Algorithms</h3>
+            <p class="path-card-desc">Tackle common string manipulation problems asked in frontend interviews.</p>
+            <div class="path-card-tags">
+              <span class="tag">Anagrams</span>
+              <span class="tag">Substrings</span>
+              <span class="tag-more">+4</span>
+            </div>
+            <div class="path-card-footer">
+              <span class="mono">6 problems</span>
+              <i class="ti ti-arrow-right card-arrow"></i>
+            </div>
+          </a>
+
+        </div>
+
+        <div class="paths-cta fade-up">
+          <a href="#" class="btn btn-secondary">
+            View all 7 learning paths
+            <i class="ti ti-arrow-right"></i>
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-inner">
+        <div class="footer-left">
+          <div class="logo">
+            <span class="logo-bracket">&lt;/&gt;</span>
+            <span class="logo-text">Interview<span class="accent">Solutions</span></span>
+          </div>
+          <p class="footer-tagline">Built with Next.js &amp; Tailwind CSS</p>
+        </div>
+        <nav class="footer-links">
+          <a href="#">Home</a>
+          <a href="#">Coding</a>
+          <a href="#">UI</a>
+          <a href="#">Theory</a>
+          <a href="#paths">Paths</a>
+        </nav>
+        <div class="footer-right">
+          <span>© 2026 InterviewSolutions. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
