@@ -353,11 +353,21 @@
                 <li><a href="#experience" class="nav-link">Experience</a></li>
                 <li><a href="#education" class="nav-link">Education</a></li>
             </ul>
-            <a href="kapil_gupta_cv.pdf" download class="btn-primary text-xs py-2 px-4">
-                <i class="fas fa-download text-xs"></i> CV
-            </a>
+            <!-- Mobile Menu Button -->
+            <button id="menu-btn" class="md:hidden text-white hover:text-[var(--accent)] transition-colors">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
         </div>
     </nav>
+
+    <!-- Mobile Menu Panel -->
+    <div id="mobile-menu" class="hidden md:hidden bg-[var(--card)] border-b border-[var(--border)] px-6 py-4 space-y-3">
+        <a href="#about" class="block py-2 text-white hover:text-[var(--accent)] transition-colors">About</a>
+        <a href="#skills" class="block py-2 text-white hover:text-[var(--accent)] transition-colors">Skills</a>
+        <a href="#projects" class="block py-2 text-white hover:text-[var(--accent)] transition-colors">Projects</a>
+        <a href="#experience" class="block py-2 text-white hover:text-[var(--accent)] transition-colors">Experience</a>
+        <a href="#education" class="block py-2 text-white hover:text-[var(--accent)] transition-colors">Education</a>
+    </div>
 
     <!-- Hero Section -->
     <header id="home" class="min-h-screen flex items-center justify-center relative px-6 pt-24 pb-12">
@@ -432,7 +442,7 @@
                 <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-white">Capabilities & Tools</h2>
             </div>
 
-            <div class="grid md:grid-cols-2 gap-6">
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div class="reveal card p-8">
                     <div class="flex items-center gap-3 mb-6">
                         <i class="fas fa-code text-[var(--accent)] text-xl"></i>
@@ -530,7 +540,7 @@
                 <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-white">Featured Projects</h2>
             </div>
 
-            <div class="grid md:grid-cols-2 gap-6">
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <!-- Project 1 -->
                 <div class="reveal card p-8 flex flex-col">
                     <div class="flex justify-between items-start mb-4">
@@ -760,7 +770,7 @@
 
                 <div class="flex flex-col items-center gap-6">
                     <a href="mailto:kapil0506gupta@gmail.com"
-                        class="text-lg md:text-2xl text-white hover:text-[var(--accent)] transition-colors border-b border-[var(--border)] pb-1">
+                        class="text-lg md:text-2xl text-white hover:text-[var(--accent)] transition-colors border-b border-[var(--border)] pb-1 break-all sm:break-normal">
                         kapil0506gupta@gmail.com
                     </a>
                     <p class="text-[var(--text-muted)] text-sm">Indore M.P. India • 8305259636</p>
@@ -810,6 +820,21 @@
             });
         });
 
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        menuBtn?.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Close menu when clicking a link
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
         // Scroll Reveal Animation (Intersection Observer)
         const reveals = document.querySelectorAll('.reveal');
         const observer = new IntersectionObserver((entries) => {
@@ -825,6 +850,5 @@
             observer.observe(reveal);
         });
     </script>
-</body>
 
 </html>
